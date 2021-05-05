@@ -1,7 +1,7 @@
  
  # Design Pattern
  
- ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a software design pattern is a general, reusable solution to a commonly occurring problem within a given context in software design. <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is not a finished design that can be transformed directly into source or machine code. Rather, it is a description or template for how to solve a problem that can be used in many different situations. Design patterns are formalized best practices that the programmer can use to solve common problems when designing an application or system.
+ ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a software design pattern is a general, reusable solution to a commonly occurring problem within a given context in software design. <br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is not a finished design that can be transformed directly into source or machine code. Rather, it is a description or template for how to solve a problem that can be used in many different situations. Design patterns are formalized best practices that the programmer can use to solve common problems when designing an application or system.
 
 <br>
 
@@ -11,6 +11,22 @@
 ##### 3. **BEHAVIORAL :** These patterns are about identifying common communication patterns between objects and realize these patterns.
 
 <br> 
+
+### **Singleton**
+#####				Define a class that has only one instance and provide a global point of access to it <br><br>A class must ensure that only single instance should be created and single object can be used by all the other classes<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:  practical use Singleton patterns are used in logging, caches, thread pools, configuration settings, device driver objects.
+
+#### **How to acheive singleton**
+ 1. make the constructor as private 
+ 2. create a private static variable of type singleton
+ 3. create a synchronized static method as public with return type as Singleton Class
+
+#### **There are two forms of instantiation**
+		1. early
+		2. Lazy 
+### disadvantage:
+#### The global state of stateful singletons is preserved between test cases. That has several serious implications:
+
+##### 1. Order of the tests now matters<br>2. Tests can have unwanted side effects caused by singleton<br>3. You cannot run multiple tests in parallel<br>4. Multiple invocations of the same test case can result in different results
 
 ### **Factory design pattern :**
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Define an interface for creating a single object, but let subclasses decide which class to instantiate.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Factory Method lets a class defer instantiation to subclasses.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. fdp is specified by achitectural implementaions by users<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg: calender, resourse bundle,number format 
