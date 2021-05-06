@@ -51,8 +51,119 @@ https://www.geeksforgeeks.org/prototype-design-pattern/
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Overkill for a project that uses very few objects and/or does not have an underlying emphasis on the extension of prototype chains.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. It also hides concrete product classes from the client<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Each subclass of Prototype must implement the clone() operation which may be difficult, when the classes under consideration already exist. Also implementing clone() can be difficult when their internals include objects that don’t support copying or have circular references.
 
 
+### **builder pattern:**
+##### The intent of the Builder design pattern is to separate the construction of a complex object from its representation. By doing so, the same construction process can create different representations.
 
 
+#### **The Builder design pattern solves problems like:**
+
+##### 1. How can a class (the same construction process) create different representations of a complex object?<br>2. How can a class that includes creating a complex object be simplified?
+
+**The Builder design pattern describes how to solve such problems:**
+
+##### 1. Encapsulate creating and assembling the parts of a complex object in a separate Builder object.<br>2. A class delegates object creation to a Builder object instead of creating the objects directly.<br>3. builder patern handles large number of parameters and builder paattern is immutable
+
+eg: sttring builder,document builder.
+
+### Advantages
+#### Advantages of the Builder pattern include:
+
+##### 1. Allows you to vary a product's internal representation.<br>2. Encapsulates code for construction and representation.<br>3.Provides control over steps of construction process.
+### Disadvantages
+#### Disadvantages of the Builder pattern include:
+
+##### 1. A distinct ConcreteBuilder must be created for each type of product.<br>2. Builder classes must be mutable.<br>3. May hamper/complicate dependency injection.
+
+```java
+// builder.java
+// lunchorder.java
+package designpattern.creational.builder;
+
+public class LunchOrder {
+
+	public static class Builder {
+		private String bread;
+		private String condiments;
+		private String dressing;
+		private String meat;
+
+		public Builder() {
+
+		}
+
+		public LunchOrder build() {
+			return new LunchOrder(this);
+		}
+
+		public Builder bread(String bread) {
+			this.bread = bread;
+			return this;
+		}
+
+		public Builder condiments(String condiments) {
+			this.condiments = condiments;
+			return this;
+		}
+
+		public Builder dressing(String dressing) {
+			this.dressing = dressing;
+			return this;
+		}
+
+		public Builder meat(String meat) {
+			this.meat = meat;
+			return this;
+		}
+
+	}
+
+	private String bread;
+	private String condiments;
+	private String dressing;
+	private String meat;
+
+	public String getBread() {
+		return bread;
+	}
+
+	public String getCondiments() {
+		return condiments;
+	}
+
+	public String getDressing() {
+		return dressing;
+	}
+
+	public String getMeat() {
+		return meat;
+	}
+
+	public LunchOrder(Builder builder) {
+		this.bread = builder.bread;
+		this.condiments = builder.condiments;
+		this.dressing = builder.dressing;
+		this.meat = builder.meat;
+	}
+
+}
+
+// builderlunchorder.java
+package designpattern.creational.builder;
+
+public class BuilderLunchOrder {
+
+	public static void main(String[] args) {
+		LunchOrder.Builder builder = new LunchOrder.Builder();
+		builder.bread("wheat").condiments("lettuce").meat("chicken");
+		LunchOrder lunchOrder = builder.build();
+		System.out.println(lunchOrder.getBread());
+		System.out.println(lunchOrder.getCondiments());
+		System.out.println(lunchOrder.getDressing());
+		System.out.println(lunchOrder.getMeat());
+	}
+
+}
+```
 
 
 
