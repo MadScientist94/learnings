@@ -21,12 +21,12 @@ public class DatabaseLayer implements DaoInterface{
 	@Qualifier("orcl")
 	DataSource ds;
 	ResultSetMetaData rsmd= null;
-	List column= new LinkedList();
+	List <String> column= new LinkedList<String>();
 	
 	
 	
 // method to execute insert update delete query 
-String dbEdit(String sql)  {
+public String dbEdit(String sql)  {
 	System.out.println(sql);
 	try {
 		return "the number of rows affected in "+sql.split(" ")[0]+" is " +ds.getConnection().createStatement().executeUpdate(sql)+" rows";
@@ -37,7 +37,7 @@ String dbEdit(String sql)  {
 }
 
 // method to execute Select Query
-List <Map<String,Object>> dbSelect(String sql)  {
+public List <Map<String,Object>> dbSelect(String sql)  {
 	System.out.println(sql);
 	List <Map<String,Object>> listOfRows = null;
 	try (ResultSet rs=ds.getConnection().createStatement().executeQuery(sql);){
@@ -46,9 +46,9 @@ List <Map<String,Object>> dbSelect(String sql)  {
 		for (int i =1;i<=rsmd.getColumnCount();i++) {
 			column.add(rsmd.getColumnName(i));
 		}
-		listOfRows= new ArrayList();
+		listOfRows= new ArrayList<Map<String,Object>>();
 		while (rs.next()) {
-			Map<String,Object> rows= new LinkedHashMap();
+			Map<String,Object> rows= new LinkedHashMap<String,Object>();
 			Iterator<String> i= column.iterator();
 			while (i.hasNext()) {
 				String columnName= i.next();

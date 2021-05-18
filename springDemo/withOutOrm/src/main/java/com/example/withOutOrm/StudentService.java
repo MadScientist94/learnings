@@ -32,7 +32,7 @@ public class StudentService {
 	}
 
 	//update query by id
-		public String dbUpdateById(Map<String, Object> data,String roll_no) {
+		public String dbUpdateById(Map<String, Object> data,Integer roll_no) {
 			String sqlQuery=String.format("update %s set %s where roll_no='%s'",tableName
 					,setValue(data),roll_no);
 			return dbl.dbEdit(sqlQuery );
@@ -47,8 +47,8 @@ public class StudentService {
 	}
 
 	//delete query by id
-	public String dbDeleteById(String roll_no) {
-		String sqlQuery=String.format("delete from %s where %s",tableName
+	public String dbDeleteById(Integer roll_no) {
+		String sqlQuery=String.format("delete from %s where roll_no=  '%s'",tableName
 				,roll_no);
 		return dbl.dbEdit(sqlQuery );
 	}
@@ -67,7 +67,7 @@ public class StudentService {
 		return dbl.dbSelect(sqlQuery);
 	}
 	//Select Query by id
-		public List<Map<String,Object>> dbSelectById(String roll_no) {
+		public List<Map<String,Object>> dbSelectById(Integer roll_no) {
 			String sqlQuery=String.format("select * from %s where Roll_no ='%s'",tableName,roll_no);
 			return dbl.dbSelect(sqlQuery);
 		}
@@ -98,9 +98,9 @@ public class StudentService {
 		String comma=",";
 		String quotes="'";
 		StringBuilder value= new StringBuilder();
-		Iterator i=data.entrySet().iterator();
+		Iterator<Entry<String, Object>> i=data.entrySet().iterator();
 		while(i.hasNext())
-		{Entry e= (Entry) i.next();
+		{Entry<String, Object> e=  i.next();
 		if(e.getValue().getClass().getSimpleName().equals("String"))
 			quotes="'";
 		else quotes="";
@@ -117,9 +117,9 @@ public class StudentService {
 		String joiner="AND";
 		String quotes="'";
 		StringBuilder value= new StringBuilder();
-		Iterator i=data.entrySet().iterator();
+		Iterator<Entry<String, Object>> i=data.entrySet().iterator();
 		while(i.hasNext())
-		{Entry e= (Entry) i.next();
+		{Entry<String, Object> e=  i.next();
 		if(e.getValue().getClass().getSimpleName().equals("String"))
 			quotes="'";
 		else quotes="";
@@ -130,4 +130,5 @@ public class StudentService {
 		}
 		return value.toString();
 	}
+
 }
