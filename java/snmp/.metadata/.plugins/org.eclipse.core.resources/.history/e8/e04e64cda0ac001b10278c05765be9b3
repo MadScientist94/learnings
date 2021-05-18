@@ -1,0 +1,12 @@
+package scheduler;
+
+public class Recorder {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		complexGetter cg= new complexGetter();
+		cg.initialize();
+	}
+
+}

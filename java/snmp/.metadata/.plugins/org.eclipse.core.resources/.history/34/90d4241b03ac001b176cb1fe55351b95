@@ -1,0 +1,12 @@
+package scheduler;
+
+import org.snmp4j.smi.OID;
+
+public class GetBulk {
+String [] ip= {"192.168.200.101","192.168.200.102","192.168.200.103","192.168.200.104","192.168.200.105"};
+OID [] oids= {1.3.6.1.2.1.2.2.1.1,1.3.6.1.2.1.2.2.1.2,1.3.6.1.2.1.2.2.1.4};// if index, if descr, if mtu
+
+
+
+
+}

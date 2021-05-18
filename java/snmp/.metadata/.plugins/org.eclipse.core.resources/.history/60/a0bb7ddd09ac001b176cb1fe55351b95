@@ -1,0 +1,88 @@
+package scheduler;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import org.snmp4j.CommunityTarget;
+import org.snmp4j.PDU;
+import org.snmp4j.Snmp;
+import org.snmp4j.TransportMapping;
+import org.snmp4j.event.ResponseEvent;
+import org.snmp4j.event.ResponseListener;
+import org.snmp4j.mp.SnmpConstants;
+import org.snmp4j.smi.GenericAddress;
+import org.snmp4j.smi.Integer32;
+import org.snmp4j.smi.OID;
+import org.snmp4j.smi.OctetString;
+import org.snmp4j.smi.VariableBinding;
+import org.snmp4j.transport.DefaultUdpTransportMapping;
+
+public class GetBulk {
+
+	  private static String  port    = "161";
+	  private static int    snmpVersion  = SnmpConstants.version1;
+	  private static String  community  = "public";
+	  String [] ips= {"192.168.200.101","192.168.200.102","192.168.200.103","192.168.200.104","192.168.200.106"};
+	  OID [] oids= {new OID("1.3.6.1.2.1.2.2.1.1"),new OID("1.3.6.1.2.1.2.2.1.2"),new OID("1.3.6.1.2.1.2.2.1.4")};// if index, if descr, if mtu
+void inittialize() {
+	for(String ip : ips)
+	createSesson(ip);
+}
+
+void createSesson(String ip) {
+	 TransportMapping transport;
+	try {
+		transport = new DefaultUdpTransportMapping();
+	
+	    transport.listen();
+	    final Snmp snmp = new Snmp(transport);
+	    snmp.listen();
+	    CommunityTarget target = new CommunityTarget();
+     target.setCommunity(new OctetString("public"));
+     target.setAddress(GenericAddress.parse(ip+"/161")); // supply your own udp address and port
+     target.setRetries(2);
+     target.setTimeout(1500);
+     target.setVersion(SnmpConstants.version2c);
+ 
+	  
+ 	PDU pdu = new PDU();
+ 	pdu.setType(PDU.GETBULK);
+ 	pdu.setRequestID(new Integer32(1));
+   for(OID oid:oids)
+	pdu.add(new VariableBinding(oid));
+	
+
+	    ResponseListener listen= new ResponseListener() {
+//	    	 final String IP=ip;
+	    	
+	    	@Override
+		public void onResponse(ResponseEvent e) {
+			if (e.getResponse()!=null) {
+			System.out.println(ip);//vector returned
+System.out.println(e.getResponse());			
+			}
+		try {
+			transport.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    	}
+	    };
+	  snmp.getBulk(pdu, target,null,listen);
+	  TimeUnit.SECONDS.sleep(10);
+	
+	
+	
+	
+	
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (InterruptedException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	}
+
+}

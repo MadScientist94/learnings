@@ -1,0 +1,121 @@
+package LIST;
+
+import java.util.*;
+
+public class Alist {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+//constructor without parameter
+List l= new ArrayList();
+l.add("ant");
+//constructor with collection object
+List l1= new ArrayList(l);
+// constructor with initial memory size
+List l2= new ArrayList(10);
+
+System.out.println(l.size());
+System.out.println(l2.size());
+System.out.println(l1.size());
+	
+//	add(int index, Object element)
+//l.add(88,"first"); ==> these line throug error because initial mem size of array list is 10
+//l.add(2,"j");=> same error
+// there fore index is used only to insert the data with in collection not out of it
+//l2.add(5,"d");
+l.add(0,"inserted");
+System.out.println(l.size());
+System.out.println(l);
+//	add(Object o)
+l.add(1);
+l.add("map");
+l.add(new Integer(6));
+System.out.println(l);
+//	addAll(Collection C)
+l1.add(l);// add blindly add entire collection as single entry
+l1.addAll(l);// add all merges the list
+//System.out.println(l);
+
+System.out.println(l1);
+//	addAll(int index, Collection C)
+l1.addAll(2, l);
+l2.add("cat");
+l2.addAll(l1);
+System.out.println(l1);
+System.out.println(l2);
+
+//	clear()
+l.clear();
+l1.clear();
+System.out.println(l1);
+//	clone()
+
+//	contains?(Object o)
+System.out.println(l2.contains("maqp"));
+//	ensureCapacity?(int minCapacity)
+//
+//	forEach?(Consumer<? super E> action)
+//
+//	get?(int index)
+//
+//	indexOf(Object O)
+//
+//	isEmpty?()
+//
+//	lastIndexOf(Object O)
+//
+//	listIterator?()
+//
+//	listIterator?(int index)
+//
+//	remove?(int index)
+//
+//	remove?(Object o)
+//
+//	removeAll?(Collection c)
+//
+//	removeIf?(Predicate filter)
+//
+//	removeRange?(int fromIndex, int toIndex)
+//
+//	retainAll?(Collection<?> c)
+//
+//	set?(int index, E element)
+//
+//	size?()
+//
+//	spliterator?()
+//
+//	subList?(int fromIndex, int toIndex)
+//
+//	toArray()
+//
+//	toArray(Object[] O)
+//
+//	trimToSize()
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+}

@@ -1,0 +1,109 @@
+package formatChanging;
+
+//import java.awt.List;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+//import java.lang.reflect.Array;
+import java.util.*;
+
+public class Initializer {
+
+	public static void main(String[] args) {
+		
+		Initializer i= new Initializer();
+		i.readFile();
+
+	}
+
+	void readFile() {
+//		Map<String,Map<String,Double>>
+		ArrayList fullData= new ArrayList();
+		try {
+		      File myObj = new File("F:\\marks.csv");
+		      Scanner myReader = new Scanner(myObj);
+		      boolean head=true;
+		      while (myReader.hasNextLine()) {
+		        String data = myReader.nextLine();
+		        if (!head) {
+		        	String[] d=data.split(",");
+		        fullData.add(d);}
+		        head=false;
+		      }
+		      myReader.close();
+		      System.out.println(fullData);
+		      load(fullData);
+		    } catch (FileNotFoundException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+	}
+	
+	
+	LinkedHashSet sid= new LinkedHashSet();
+	LinkedHashSet sub= new LinkedHashSet();
+	
+	HashMap fullData = new HashMap(); ;
+
+	void load(ArrayList data) {
+		Iterator i= data.iterator();
+		while(i.hasNext()) {
+			String[] rows=(String[]) i.next();
+			sid.add(rows[0]);
+			sub.add(rows[1]);
+			}
+		 Iterator sidI= sid.iterator();
+		
+		while(sidI.hasNext()) {
+			String studentId=(String)sidI.next();
+			  i= data.iterator();
+			   HashMap mark= new HashMap();
+			 while(i.hasNext()) {
+				 String[] rows=(String[]) i.next();
+			if(studentId.equals(rows[0])) {
+				mark.put(rows[1], rows[2]);
+			}
+			fullData.put(studentId,mark);
+			}
+			}
+		System.out.println(fullData);
+		changeFormat();
+	}
+	
+	
+	void changeFormat() {
+	Iterator i;
+		try {
+		PrintWriter writer = new PrintWriter(new File("F:\\marks1.csv"));
+		StringBuilder sb = new StringBuilder();
+		i=sub.iterator();
+		while(i.hasNext())
+		sb.append(i.next());
+		sb.append("\n");
+		
+
+	 i = sid.iterator();
+		while (i.hasNext()) {
+			String studentId= (String)i.next();
+			sb.append(studentId);
+			HashMap data= (HashMap) fullData.get(studentId);
+			Iterator subi= sub.iterator();
+			while(subi.hasNext()) {
+				sb.append(","+data.get(subi.next()));
+				if (!subi.hasNext()) {
+					sb.append("\n");
+			}
+//			sb.append(","+data.get("s1")+","+data.get("s2")+
+//					","+data.get("s3")+","+data.get("s4")+"\n");
+//			
+		}
+		System.out.println(sb);
+		writer.write(sb.toString());
+	writer.close();
+	}
+	catch(Exception e) {
+		System.out.println(e);
+	}
+	
+	}
+}

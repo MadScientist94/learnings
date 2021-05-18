@@ -1,0 +1,24 @@
+package MAP;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+
+public class Hmap {
+
+	public static void main(String[] args) {
+		HashMap hm= new HashMap();
+hm.put("can", 1);
+hm.put("van",2);
+hm.put("ban",3);
+
+Set s=hm.entrySet();
+Iterator i= s.iterator();
+System.out.println(i.next());
+System.out.println(i.next());
+System.out.println(i.next());
+System.out.println(i.next());
+
+	}
+
+}

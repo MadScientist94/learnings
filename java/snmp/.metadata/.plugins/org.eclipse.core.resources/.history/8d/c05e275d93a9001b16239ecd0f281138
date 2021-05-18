@@ -1,0 +1,5 @@
+package snmp;
+
+public class TrapReceiver {
+
+}

@@ -1,0 +1,73 @@
+package SET;
+
+import java.util.*;
+
+public class Hset {
+
+	public static void main(String[] args) {
+		
+HashSet hs= new HashSet();
+		
+		
+		
+		
+//		add(E e)
+hs.add(1);
+hs.add(2);
+hs.add(3);
+hs.add(4);
+hs.add(5);
+hs.add(6);
+hs.add(7);
+System.out.println(hs);
+//		addAll​(Collection<? extends E> c)
+//		addAll(collection) 
+HashSet hs1= new HashSet();
+hs1.addAll(hs);
+System.out.println(hs1);
+//		clear()
+hs1.clear();
+System.out.println(hs1);
+//		contains(Object o)
+System.out.println(hs.contains(3));
+hs1.add(3);
+hs1.add(5);
+//		containsAll(collection) 
+System.out.println(hs.containsAll(hs1));
+//		retainAll(collection)
+System.out.println(hs.retainAll(hs1));
+
+//		remove(Object o)
+System.out.println(hs.remove(3));
+
+//		removeAll(collection)
+System.out.println(hs.removeAll(hs1));
+
+//		iterator()
+//
+//		isEmpty()
+//
+//		size()
+//
+//		clone()
+
+//		equals()
+//
+//		hashcode()
+//
+
+//		toArray()
+//
+//		toArray​(T[] a)
+
+//		toString()
+
+//		parallelStream()
+//
+//		removeIf​(Predicate<? super E> filter)
+//
+//		stream()
+		
+	}
+
+}

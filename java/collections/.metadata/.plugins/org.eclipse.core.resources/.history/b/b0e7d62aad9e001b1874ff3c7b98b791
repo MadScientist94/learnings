@@ -1,0 +1,59 @@
+package SET;
+
+public class Tset {
+
+	public static void main(String[] args) {
+
+//		add(Object o)
+//
+//		addAll(Collection c)
+//
+//		ceiling?(E e)
+//
+//		clear()
+//
+//		clone()
+//
+//		Comparator comparator()
+//
+//		contains(Object o)
+//
+//		descendingIterator?()
+//
+//		descendingSet?()
+//
+//		first()
+//
+//		floor?(E e)
+//
+//		headSet(Object toElement)
+//
+//		higher?(E e)
+//
+//		isEmpty()
+//
+//		Iterator iterator()
+//
+//		last()
+//
+//		lower?(E e)
+//
+//		pollFirst?()
+//
+//		pollLast?()
+//
+//		remove(Object o)
+//
+//		size()
+//
+//		spliterator?()
+//
+//		subSet(Object fromElement, Object toElement)
+//
+//		tailSet(Object fromElement)
+
+	
+	
+	}
+
+}

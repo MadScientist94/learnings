@@ -1,0 +1,5 @@
+package snmpByMe;
+
+public class SnmpGetAsc {
+
+}

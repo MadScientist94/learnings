@@ -1,0 +1,100 @@
+package snmpByMe;
+
+import java.io.IOException;
+import java.net.StandardSocketOptions;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.snmp4j.CommunityTarget;
+import org.snmp4j.Snmp;
+import org.snmp4j.TransportMapping;
+import org.snmp4j.mp.SnmpConstants;
+import org.snmp4j.smi.Address;
+import org.snmp4j.smi.GenericAddress;
+import org.snmp4j.smi.OID;
+import org.snmp4j.smi.OctetString;
+import org.snmp4j.smi.VariableBinding;
+import org.snmp4j.transport.DefaultUdpTransportMapping;
+import org.snmp4j.util.DefaultPDUFactory;
+import org.snmp4j.util.TreeEvent;
+import org.snmp4j.util.TreeListener;
+import org.snmp4j.util.TreeUtils;
+
+public class SnmpWalkAsc {
+	 CommunityTarget target;
+	{
+    target= new CommunityTarget();
+    target.setCommunity(new OctetString("public"));
+    target.setAddress(GenericAddress.parse("udp:192.168.200.102/161"));//udp mentioning the type of address
+    target.setRetries(2);
+    target.setTimeout(1500);
+    target.setVersion(SnmpConstants.version2c);
+}
+	public static void main(String[] args) throws IOException, InterruptedException {
+		SnmpWalkAsc a= new SnmpWalkAsc();
+a.asycWalk();
+	}
+
+	TreeListener listen = new TreeListener() {
+int c=0;
+		@Override
+		public void finished(TreeEvent event) {
+			// TODO Auto-generated method stub
+			System.out.println("<======>"+event+" "+c);
+		}
+boolean finishedFlag=false;
+		@Override
+		public boolean isFinished() {
+			// TODO Auto-generated method stub
+			System.out.println("done");
+//			if (c>2)
+//				return true;
+//			
+			return finishedFlag;
+		}
+
+		@Override
+		public boolean next(TreeEvent event) { //if we return true the  
+			// TODO Auto-generated method stub
+//			System.out.println(event);
+			c++;
+
+			if (event!= null) {
+				VariableBinding[] vbs =event.getVariableBindings();
+				
+				for(VariableBinding vb:vbs) {
+//					if (vb.getOid().equals(new OID("1.3.6.1.2.1.25.4.2.1.1.11573")))
+//					{finishedFlag=true;				
+//						return false;}
+			if (vb.getOid().startsWith(new OID("1.3.6.1.2.1.2"))){
+					System.out.print(vb.getOid()+" ==> ");
+					System.out.println(vb.getVariable());}
+
+				}}
+				
+//			System.out.println(this.isFinished());
+			return true;
+		}
+		
+	};
+
+//	OID[] tableOid= {new OID("1.3.6.1.2.1.1"),new OID("1.3.6.1.2.1.4"),new OID("1.3.6.1.2.1.5")};
+	OID[] tableOid= {new OID("1.3.6.1.2.1.")};
+
+//	OID[] tableOid= {new OID("1.3.6.1.2.1.2"),new OID("1.3.6.1.2.1.3"),new OID("1.3.6.1.2.1.2.4")};
+	void asycWalk() throws IOException, InterruptedException {
+	 TransportMapping<? extends Address> transport = new DefaultUdpTransportMapping(); 
+     Snmp snmp = new Snmp(transport);
+//     snmp.listen();
+     transport.listen();
+     TreeUtils treeUtils = new TreeUtils(snmp, new DefaultPDUFactory());
+    treeUtils.walk(target, tableOid,null,listen);
+System.out.println(treeUtils.getMaxRepetitions());
+
+System.out.println(listen.isFinished());
+    TimeUnit.SECONDS.sleep(2);
+//    transport.close();
+//    snmp.close();
+}
+
+}

@@ -1,0 +1,41 @@
+package scheduler;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+
+public class Recorder {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		
+	}
+
+	void formater() {
+		complexGetter cg= new complexGetter();
+		System.out.println(cg.initialize()+"last");
+		System.out.println("udpId,Oid,Value");
+		TreeMap<String, TreeMap<String, String>> result=cg.initialize();
+		 
+		    
+		 LocalDateTime myDateObj = LocalDateTime.now();
+		    System.out.println("Before formatting: " + myDateObj);
+		    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm:ss");
+
+		System.out.println(myDateObj.format(myFormatObj)+".csv");
+		
+		TreeSet<String> udpids= (TreeSet<String>) result.keySet();
+		for (String udpid:udpids) {
+			Iterator<Entry<String, String>>  i=result.get(udpid).entrySet().iterator();
+		}
+		
+	}
+	
+}

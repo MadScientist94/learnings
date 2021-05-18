@@ -1,0 +1,65 @@
+package xmlcsvjson;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Map;
+import java.util.Scanner;
+import org.json.*;
+
+//import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.*;
+//import com.fasterxml.jackson.dataformat.csv.*;
+//import com.fasterxml.jackson.dataformat.csv.CsvSchema.Builder;
+import com.fasterxml.jackson.core.*;
+public class JsonTo {
+	public static void main(String[] args) throws JSONException, IOException {
+		// TODO Auto-generated method stub
+		File file= new File("f:\\student.json");
+//		JsonNode jsonTree = new ObjectMapper().readTree(new File("f:\\student.json"));
+//		Builder csvSchemaBuilder = CsvSchema.builder();
+//		JsonNode firstObject = jsonTree.elements().next();
+//		firstObject.fieldNames().forEachRemaining(fieldName -> {csvSchemaBuilder.addColumn(fieldName);} );
+//		CsvSchema csvSchema = csvSchemaBuilder.build().withHeader();
+//		CsvMapper csvMapper = new CsvMapper();
+//		csvMapper.writerFor(JsonNode.class)
+//		  .with(csvSchema)
+//		  .writeValue(new File("f:\\student.csv"), jsonTree);
+		JSONObject output;
+		try {
+			PrintWriter writer = new PrintWriter(new File("F:\\student.csv"));
+//		      ArrayList fullData=new ArrayList();
+		      Scanner myReader = new Scanner(file);
+		      boolean head=true;
+		      StringBuffer sb = new StringBuffer();
+		      while (myReader.hasNextLine()) {
+		        String data = myReader.nextLine();
+		       sb.append(data);
+		      }
+		      String s=sb.toString();
+		      
+		      
+		      ObjectMapper mapper = new ObjectMapper();
+		      Map map = mapper.readValue(s, Map.class);
+		      System.out.println(map);
+		      JSONObject json = new JSONObject(s);
+		      String xml = XML.toString(json);
+		      System.out.println(xml);
+		      
+		      String jsonArrayString = "{\"Student\": ["+s+"]}";
+		      output = new JSONObject(jsonArrayString);
+		         JSONArray docs = output.getJSONArray("Student");
+		         File file1 = new File("f:\\student.csv");
+		         String csv = CDL.toString(docs);
+//		         FileUtils.writeStringToFile(file1, csv);
+		         System.out.println("Data has been Sucessfully Writeen to "+ file1);
+		         System.out.println(csv);
+		         writer.write(csv.toString());
+				  	writer.close();
+		    } catch (FileNotFoundException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+	}
+
+}

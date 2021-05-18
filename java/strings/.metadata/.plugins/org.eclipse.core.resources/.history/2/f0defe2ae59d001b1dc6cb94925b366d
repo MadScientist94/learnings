@@ -1,0 +1,92 @@
+package checkedEH;
+
+import java.util.Date;
+
+public class LangEH {
+
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+		
+		LangEH eh=new LangEH();
+//		• ReflectiveOperationException
+				eh.roe();
+//		• ClassNotFoundException
+		eh.cnfe();
+//		• InstantiationException
+		eh.ie();
+//		• IllegalAccessException
+		eh.iae();
+//		• InvocationTargetException
+		eh.ite();
+//		• NoSuchFieldException
+		eh.nsfe();
+//		• NoSuchMethodException
+		eh.nsme();
+//		• CloneNotSupportedException
+		eh.cnse();
+//		• InterruptedException
+		eh.i_e();
+System.out.println("end");
+	}
+
+//	• ReflectiveOperationException
+	void roe() {
+		
+	}
+//	• ClassNotFoundException
+	void cnfe() throws ClassNotFoundException {
+		Class.forName("java.lang.String");
+		
+	}
+//	• InstantiationException
+	void ie() throws InstantiationException, IllegalAccessException {
+//		try {
+	         // date object
+	         o d = new o1();
+	         Class cls = d.getClass();
+	         System.out.println("Time = " + d.toString());
+
+	         /* creates a new instance of the class represented by this 
+	            Class object cls */
+//	         Object obj = cls.newInstance();
+	         d.getClass().newInstance();
+//	         o1.class.getClass().newInstance();
+//	         System.out.println("Time = " + obj);
+//	      } catch(InstantiationException e) {
+//	         System.out.println(e.toString());
+//	      } catch(IllegalAccessException e) {
+//	         System.out.println(e.toString());
+//	      }
+	}
+//	• IllegalAccessException
+	void iae() throws InstantiationException, IllegalAccessException {
+//		o1.class.getClass().newInstance();
+	}
+//	• InvocationTargetException
+	void ite() {
+		
+	}
+//	• NoSuchFieldException
+	void nsfe() {
+		
+	}
+//	• NoSuchMethodException
+	void nsme() {
+		
+	}
+//	• CloneNotSupportedException
+	void cnse() {
+		
+	}
+//	• InterruptedException
+	void i_e() {
+		
+	}
+	
+	
+}
+abstract class o{
+	
+}
+class o1 extends o{
+	
+}

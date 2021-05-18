@@ -1,0 +1,17 @@
+package StringBfr;
+
+public class AllMethods {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		StringBuffer s=new StringBuffer();
+		StringBuffer s1=new StringBuffer(20);
+		StringBuffer s2=new StringBuffer("GeeksforGeeks");
+		
+//length( ) and capacity( )
+		System.out.println(s.length());
+		System.out.println(s.capacity());
+		
+	}
+
+}

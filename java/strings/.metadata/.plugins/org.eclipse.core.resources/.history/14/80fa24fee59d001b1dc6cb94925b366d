@@ -1,0 +1,84 @@
+package checkedEH;
+
+import java.sql.Date;
+
+public class LangEH {
+
+	public static void main(String[] args) throws ClassNotFoundException {
+		
+		LangEH eh=new LangEH();
+//		• ReflectiveOperationException
+				eh.roe();
+//		• ClassNotFoundException
+		eh.cnfe();
+//		• InstantiationException
+		eh.ie();
+//		• IllegalAccessException
+		eh.iae();
+//		• InvocationTargetException
+		eh.ite();
+//		• NoSuchFieldException
+		eh.nsfe();
+//		• NoSuchMethodException
+		eh.nsme();
+//		• CloneNotSupportedException
+		eh.cnse();
+//		• InterruptedException
+		eh.i_e();
+System.out.println("end");
+	}
+
+//	• ReflectiveOperationException
+	void roe() {
+		
+	}
+//	• ClassNotFoundException
+	void cnfe() throws ClassNotFoundException {
+		Class.forName("java.lang.String");
+		
+	}
+//	• InstantiationException
+	void ie() {
+		try {
+	         // date object
+	         Date d = new Date(1993);
+	         Class cls = d.getClass();
+	         System.out.println("Time = " + d.toString());
+
+	         /* creates a new instance of the class represented by this 
+	            Class object cls */
+	         Object obj = cls.newInstance();
+	         System.out.println("Time = " + obj);
+	      } catch(InstantiationException e) {
+	         System.out.println(e.toString());
+	      } catch(IllegalAccessException e) {
+	         System.out.println(e.toString());
+	      }
+	}
+//	• IllegalAccessException
+	void iae() {
+		
+	}
+//	• InvocationTargetException
+	void ite() {
+		
+	}
+//	• NoSuchFieldException
+	void nsfe() {
+		
+	}
+//	• NoSuchMethodException
+	void nsme() {
+		
+	}
+//	• CloneNotSupportedException
+	void cnse() {
+		
+	}
+//	• InterruptedException
+	void i_e() {
+		
+	}
+	
+	
+}

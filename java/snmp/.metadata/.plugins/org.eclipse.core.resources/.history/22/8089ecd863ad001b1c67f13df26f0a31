@@ -1,0 +1,128 @@
+package scheduler;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.concurrent.TimeUnit;
+
+import org.snmp4j.CommunityTarget;
+import org.snmp4j.Snmp;
+import org.snmp4j.TransportMapping;
+import org.snmp4j.mp.SnmpConstants;
+import org.snmp4j.smi.Address;
+import org.snmp4j.smi.GenericAddress;
+import org.snmp4j.smi.OID;
+import org.snmp4j.smi.OctetString;
+import org.snmp4j.smi.VariableBinding;
+import org.snmp4j.transport.DefaultUdpTransportMapping;
+import org.snmp4j.util.DefaultPDUFactory;
+import org.snmp4j.util.TreeEvent;
+import org.snmp4j.util.TreeListener;
+import org.snmp4j.util.TreeUtils;
+
+public class ScheduledWalk {
+	String [] ips= {"192.168.200.101","192.168.200.102","192.168.200.103","192.168.200.104","192.168.200.106"};
+//	  OID [] oids= {new OID("1.3.6.1.2.1.2.2.1.1"),new OID("1.3.6.1.2.1.2.2.1.2"),new OID("1.3.6.1.2.1.2.2.1.4")};// if index, if descr, if mtu
+	 final String [] oids= {"1.3.6.1.2.1.2.2.1.1","1.3.6.1.2.1.2.2.1.2","1.3.6.1.2.1.2.2.1.4"};
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ScheduledWalk sw= new ScheduledWalk();	
+		sw.walk();
+	}
+	FileWriter writer;
+	{
+		try {
+			
+			LocalDateTime myDateObj = LocalDateTime.now();
+		    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
+		    writer= new FileWriter(new File("F:\\"+myDateObj.format(myFormatObj)+".csv"));
+		    
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	int count;
+	synchronized  void  writing(String content) {
+		try {
+			writer.write(content);
+		if(count<1) {
+			writer.close();
+		}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	 TreeListener listen = new TreeListener() {
+		@Override
+		public void finished(TreeEvent event) {
+			System.out.println("<======>"+event.getVariableBindings());
+			System.out.println("<======>"+event);
+//		count--;
+		
+		}
+boolean finishedFlag=false;
+		@Override
+		public boolean isFinished() {
+		return false;
+		}
+
+		@Override
+		public boolean next(TreeEvent event) { 
+			System.out.println(event);
+			if (event!= null) {
+				VariableBinding[] vbs =event.getVariableBindings();
+
+				for(VariableBinding vb:vbs) {
+					System.out.print(vb.getOid()+" ==> ");
+					System.out.println(vb.getVariable());
+
+				}
+				}
+			return true;
+		}
+		
+	};
+
+
+	
+	 void walk() {
+		CommunityTarget target;
+		
+	    target= new CommunityTarget();
+	    target.setCommunity(new OctetString("public"));
+	    target.setAddress(GenericAddress.parse("udp:192.168.200.102/161"));//udp mentioning the type of address
+	    target.setRetries(2);
+	    target.setTimeout(1500);
+	    target.setVersion(SnmpConstants.version2c);
+	    
+		 TransportMapping<? extends Address> transport;
+		try {
+			transport = new DefaultUdpTransportMapping();
+		
+	     Snmp snmp = new Snmp(transport);
+	     transport.listen();
+	     TreeUtils treeUtils = new TreeUtils(snmp, new DefaultPDUFactory());
+	     OID[] tableOid= {new OID("1.3.6.1.2.1")};
+		count++;
+	     treeUtils.walk(target, tableOid,null,listen);
+		
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+	    
+	    
+	    
+		 try {
+			TimeUnit.SECONDS.sleep(10);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+	
+	
+}

@@ -1,0 +1,99 @@
+package LIST;
+
+import java.util.*;
+
+public class Llist {
+
+	public static void main(String[] args) {
+		List l = new LinkedList();
+		
+//		add(int index, E element)
+//l.add(1,9);// index  exception
+		l.add(0,9);
+System.out.println(l);
+//		add(E e)
+l.add(8);
+//		addAll(int index, Collection<E> c)
+List l1= new LinkedList();
+l1.addAll(l);
+System.out.println(l1);
+//		addAll(Collection<E> c)
+//
+//		addFirst(E e)
+//
+//		addLast(E e)
+//
+//		clear()
+//
+//		clone()
+//
+//		contains(Object o)
+//
+//		descendingIterator()
+//
+//		element()
+//
+//		get(int index)
+//
+//		getFirst()
+//
+//		getLast()
+//
+//		indexOf(Object o)
+//
+//		lastIndexOf(Object o)
+//
+//		listIterator(int index)
+//
+//		offer(E e)
+//
+//		offerFirst(E e)
+//
+//		offerLast(E e)
+//
+//		peek()
+//
+//		peekFirst()
+//
+//		peekLast()
+//
+//		poll()
+//
+//		pollFirst()
+//
+//		pollLast()
+//
+//		pop()
+//
+//		push(E e)
+//
+//		remove()
+//
+//		remove(int index)
+//
+//		remove(Object o)
+//
+//		removeFirst()
+//
+//		removeFirstOccurrence(Object o)
+//
+//		removeLast()
+//
+//		removeLastOccurrence(Object o)
+//
+//		set(int index, E element)
+//
+//		size()
+//
+//		spliterator()
+//
+//		toArray()
+//
+//		toArray(T[] a)
+//
+//		toString()
+
+
+	}
+
+}
