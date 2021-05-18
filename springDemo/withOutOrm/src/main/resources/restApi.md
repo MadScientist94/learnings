@@ -76,7 +76,7 @@ body contains all the [entire json Structure](#js) and any/all the fields in dat
 delete data by roll_no<br>
 Delete ==> http://localhost:8081/12343<br> 
 
-update data by where condition<br>
+delete data by where condition<br>
 Delete ==> http://localhost:8081/where<br> 
 body contains any/all the fields in [condition json](#condition_json)
 
