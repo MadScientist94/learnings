@@ -1,5 +1,0 @@
-package snmp;
-
-public class TrapSender {
-
-}
