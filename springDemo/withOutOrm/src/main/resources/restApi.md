@@ -18,7 +18,7 @@
 
 
 ## select all students
-json request body Struture
+<a name="js">json request body Struture</a>
 ```json
     {
         'data': {
@@ -52,51 +52,33 @@ json request body Struture
 API
 
 select all<br>
-http://localhost:8080/
+GET ==> http://localhost:8081/
 
 select by rollno
-<br> http://localhost:8080/12343
+<br>GET ==> http://localhost:8081/12343
 
-select by condition <br> http://localhost:8080/ <br> body contains any/all the fields in [condition json](#condition_json)
+select by condition <br>
+POST ==> http://localhost:8081/where <br> 
+body contains any/all the fields in [condition json](#condition_json)
 
-a
-a
-a
-a
-a
+insert data<br>
+POST ==> http://localhost:8081/
+body contains [data objects](#do)
 
-a
-a
-a
+update data by roll_no<br>
+PUT ==> http://localhost:8081/12343<br> 
+body contains [data objects](#do)
 
+update data by where condition<br>
+PUT ==> http://localhost:8081/where<br> 
+body contains all the [entire json Structure](#js) and any/all the fields in data object and condition object
 
-a
-a
-a
+delete data by roll_no<br>
+Delete ==> http://localhost:8081/12343<br> 
 
-
-a
-
-a
-a
-
-a
-
-a
-
-a
-
-a
-
-a
-
-a
-
-a
-
-a
-
-a
+update data by where condition<br>
+Delete ==> http://localhost:8081/where<br> 
+body contains any/all the fields in [condition json](#condition_json)
 
 
 
@@ -107,9 +89,24 @@ a
 
 
 
-
-
-
+## <a name="do"></a> data json
+```json
+    {
+        'data': {
+            'roll_no' : 'rollNo',
+	        'name' : 'name',
+        	'department' : 'department',
+	        'email' : 'email',
+    	    'address' : 'address',
+    	    'phone' : 'phone',
+            'm1':1,
+            'm2':2,
+            'm3':3,
+            'm4':4,
+            'm5':5
+            }
+    }
+```
 ## <a name="condition_json"> condition json </a>
 ```json
     {
