@@ -86,7 +86,7 @@ example:
 	
 			
 
-![alt text](./src/Statements.PNG)
+![alt text](./src/Statements.png)
 
 
 When you submit the SQL statement using Statement Object then SQL
@@ -126,7 +126,7 @@ phone long);
 * using Single preparedstatement object you can submit only one sql statement
 
 
-![alt text](./src/preparedstatments.PNG)
+![alt text](./src/preparedstatments.png)
 
 * when we submit the sql statement using prepared statement object then sql statement will be __compiled__ only once i.e first time and 
 precompiled SQL statement will be executed every time.
@@ -178,7 +178,7 @@ First Time 		= 20ms
 	cal.setInt(2,20);
 	cal.execute();
 	
-![alt text](src/callableStatements.PNG)
+![alt text](src/callableStatements.png)
 	
 * when you submit the call to stored procedures using CallableStatement object thne pre compiled stored procedures will be executed directly 
 
