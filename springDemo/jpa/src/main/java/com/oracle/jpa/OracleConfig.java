@@ -1,11 +1,14 @@
-package com.example.withOutOrm;
+package com.oracle.jpa;
 
 import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import oracle.jdbc.pool.OracleDataSource;
 
@@ -21,5 +24,13 @@ DataSource dataSource() throws SQLException {
     dataSource.setDataSourceName("oracle.jdbc.driver.OracleDriver");
   
     return dataSource;
+}
+@Autowired
+@Qualifier("orcl")
+DataSource ds;
+@Bean("jt")
+JdbcTemplate get1() {
+	JdbcTemplate jt= new JdbcTemplate(ds);
+	return jt;
 }
 }
