@@ -1,0 +1,10 @@
+package Xpath;
+
+public class Initial {
+
+	public static void main(String[] args) {
+		Methods m = new Methods();
+		m.read();
+	}
+
+}
