@@ -14,9 +14,10 @@ The DOM (Document Object Model) parser parses an XML document into an object gra
 
 
 # some use full links
-+ XML explainations[https://www.w3resource.com/xml/entities.php]
++ XML explainations[https://www.w3resource.com/xml/xml.php]
 +  XML resources for practice[http://aiweb.cs.washington.edu/research/projects/xmltk/xmldata/]
 + Java & XML Tool Overview(easy understandable)[http://tutorials.jenkov.com/java-xml/overview.html]
++ DOM4J documentation[https://dom4j.github.io/]
 +  stax [https://wso2.com/library/1844/]
 + StAX [https://www.docs4dev.com/docs/en/java/java8/tutorials/jaxp-stax-using.html]
 + DOM parser example [https://mkyong.com/java/how-to-modify-xml-file-in-java-dom-parser/]
