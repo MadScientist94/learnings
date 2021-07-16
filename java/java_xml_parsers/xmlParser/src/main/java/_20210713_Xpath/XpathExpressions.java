@@ -22,7 +22,7 @@ public class XpathExpressions {
 	
 	private void read() {
 		try {
-	         File inputFile = new File("book.xml");
+	         File inputFile = new File("device_sample.xml");
 	         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	         DocumentBuilder dBuilder;
 	         dBuilder = dbFactory.newDocumentBuilder();
@@ -30,10 +30,34 @@ public class XpathExpressions {
 	         doc.getDocumentElement().normalize();
 	         XPath xPath =  XPathFactory.newInstance().newXPath();
 
-	         String expression = "/catalog/child::book/price";
+	         String expression = "/devices/device/counters/counter";
 	          NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(
 			            doc, XPathConstants.NODESET);
+
+	          System.out.println(nodeList.item(0).getParentNode().getParentNode().getAttributes().item(0));
+	         System.out.println( nodeList.item(0).getOwnerDocument());
+	         NodeList nodeList1 = (NodeList) xPath.compile("../*").evaluate(
+	        		 nodeList.item(0).getOwnerDocument(), XPathConstants.NODESET);
+	         System.out.println(nodeList1.item(0).getChildNodes().item(0).getNamespaceURI());
+	          
+	          //	          nodeList.
+//	          System.out.println(nodeList.item(0).getBaseURI());
+//	          System.out.println(nodeList.item(0).getLocalName());
 //	          System.out.println(nodeList.item(0).getNodeName());
+//	          System.out.println(nodeList.item(0).getNodeValue());
+//	          System.out.println(nodeList.item(0).getPrefix());
+//	          System.out.println(nodeList.item(0).getTextContent().replaceAll("\n", ",") .replace("\\s+", " "));
+//	          System.out.println(nodeList.item(0).getTextContent());
+//	          System.out.println(nodeList.item(0).getUserData("44.95"));
+//	          System.out.println(nodeList.item(0).getFirstChild());
+//	          System.out.println(nodeList.item(0).hasAttributes());
+//	          System.out.println(nodeList.item(0).hasChildNodes());
+//	          System.out.println(nodeList.item(0).isEqualNode(nodeList.item(0)));
+//	          System.out.println(nodeList.item(0).isSameNode(nodeList.item(0)));
+//	          System.out.println(nodeList.item(0).compareDocumentPosition(nodeList.item(1)));
+//	          System.out.println(nodeList.item(0).getClass());
+//	          System.out.println(nodeList.item(0).getLastChild());
+	          
 	          System.out.println(nodeList.getLength());
 	          
 	       

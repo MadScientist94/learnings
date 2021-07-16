@@ -1,0 +1,10 @@
+#Normalised CSV Header
+header,ne_datetime,counter_id,ne_id,object_id,counter_value,measurement_name,core_id,vendor_id,ne_type_id,created_on,counter_string,sub_ne_type,tag,ne_date
+#base path expression
+base_path_expression,/devices/device/counters/counter
+counter_value,child~!~value~!~text
+counter_id,child~!~name~!~text
+ne_id,parent~!~device~!~att~=id
+#ne_name,parent~!~device~!~child~!~name~!~text
+ne_datetime,parent~!~devices~!~child~!~time~!~text
+static_columns,measurement_type=basic~!granularity=15

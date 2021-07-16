@@ -1,0 +1,39 @@
+<devices>
+	<time>10/02/2021 05:30</time>
+	<device id="Device01">
+		<name>Dev1</name>
+		<time>10/02/2021 05:30</time>
+		<counters>
+			<counter>
+				<name>counter1</name>
+				<value>100</value>
+			</counter>
+			<counter>
+				<name>counter2</name>
+				<value>101</value>
+			</counter>
+			<counter>
+				<name>counter3</name>
+				<value>99</value>
+			</counter>
+		</counters>
+	</device>
+	<device id="Device02">
+		<name>Dev2</name>
+		<time>10/02/2021 05:30</time>
+		<counters>
+			<counter>
+				<name>counter1</name>
+				<value>100</value>
+			</counter>
+			<counter>
+				<name>counter2</name>
+				<value>101</value>
+			</counter>
+			<counter>
+				<name>counter3</name>
+				<value>99</value>
+			</counter>
+		</counters>
+	</device>
+</devices>
