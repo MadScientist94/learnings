@@ -1,0 +1,67 @@
+package checkedEH;
+
+public class LangEH {
+
+	public static void main(String[] args) throws ClassNotFoundException {
+		Class.forName("java.lang.String");
+		LangEH eh=new LangEH();
+//		• ReflectiveOperationException
+				eh.roe();
+//		• ClassNotFoundException
+		eh.cnfe();
+//		• InstantiationException
+		eh.ie();
+//		• IllegalAccessException
+		eh.iae();
+//		• InvocationTargetException
+		eh.ite();
+//		• NoSuchFieldException
+		eh.nsfe();
+//		• NoSuchMethodException
+		eh.nsme();
+//		• CloneNotSupportedException
+		eh.cnse();
+//		• InterruptedException
+		eh.i_e();
+
+	}
+
+//	• ReflectiveOperationException
+	void roe() {
+		
+	}
+//	• ClassNotFoundException
+	void cnfe() {
+		
+	}
+//	• InstantiationException
+	void ie() {
+		
+	}
+//	• IllegalAccessException
+	void iae() {
+		
+	}
+//	• InvocationTargetException
+	void ite() {
+		
+	}
+//	• NoSuchFieldException
+	void nsfe() {
+		
+	}
+//	• NoSuchMethodException
+	void nsme() {
+		
+	}
+//	• CloneNotSupportedException
+	void cnse() {
+		
+	}
+//	• InterruptedException
+	void i_e() {
+		
+	}
+	
+	
+}

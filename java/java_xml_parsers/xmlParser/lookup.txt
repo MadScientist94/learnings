@@ -1,9 +1,14 @@
 #Normalised CSV Header
 header,ne_datetime,counter_id,ne_id,object_id,counter_value,measurement_name,core_id,vendor_id,ne_type_id,created_on,counter_string,sub_ne_type,tag,ne_date
 #base path expression
-base_path_expression,//counter
-#static_columns,measurement_type=basic~!granularity=15
-ne_id,string(../../@id)
+base_path_expression,//counter[child::value[normalize-space(text())!='']]
+static_columns,core_id=1~!vendor_id=4~!ne_type_id=2
+ne_id,string(../../../../../../name)
 counter_id,string(name)
+#counter_id,string(name[data()==c2])
 counter_value,number(value)
-ne_datetime,String(../../time)
+#ne_datetime,string(format-date(../../../../../../../time, '[M01]/[D01]/[Y0001]')),dd/MM/yyyy HH:mm,dd-MM-yyyy HH:mm
+ne_datetime,string(../../../../../../time),dd/MM/yyyy HH:mm,dd-MM-yyyy HH:mm
+measurement_name,string(../../@id)
+object_id,string(../../../../@id)
+ 

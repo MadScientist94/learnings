@@ -1,0 +1,124 @@
+<devices>
+<device>
+	<name>device name1</name>
+	<Objects>
+		<Object id="object1">
+			<measurements>
+				<measurement id="utilization"> 
+					<counters>
+						<counter> 
+							<name> c1</name>
+							<value>10</value>
+						</counter>
+						<counter> 
+							<name> c2</name>
+							<value>20</value>
+						</counter>		
+					</counters>
+				</measurement>
+				<measurement id="Basic"> 
+					<counters>
+						<counter> 
+							<name> c1</name>
+							<value>10</value>
+						</counter>
+						<counter> 
+							<name> c2</name>
+							<value>20</value>
+						</counter>		
+					</counters>
+				</measurement>
+			</measurements>
+		</Object>
+		<Object id="object2">
+			<measurements>
+				<measurement id="utilization"> 
+					<counters>
+						<counter> 
+							<name> c1</name>
+							<value>10</value>
+						</counter>
+						<counter> 
+							<name> c2</name>
+							<value>20</value>
+						</counter>		
+					</counters>
+				</measurement>
+				<measurement id="Basic"> 
+					<counters>
+						<counter> 
+							<name> c1</name>
+							<value>10</value>
+						</counter>
+						<counter> 
+							<name> c2</name>
+							<value>20</value>
+						</counter>		
+					</counters>
+				</measurement>
+			</measurements>
+		</Object>
+	</Objects>
+</device>
+<device>
+	<name>device name2</name>    
+	<Objects>
+		<Object id="object1">
+			<measurements>
+				<measurement id="utilization"> 
+					<counters>
+						<counter> 
+							<name> c1</name>
+							<value>10</value>
+						</counter>
+						<counter> 
+							<name> c2</name>
+							<value>20</value>
+						</counter>		
+					</counters>
+				</measurement>
+				<measurement id="Basic"> 
+					<counters>
+						<counter> 
+							<name> c1</name>
+							<value>10</value>
+						</counter>
+						<counter> 
+							<name> c2</name>
+							<value>20</value>
+						</counter>		
+					</counters>
+				</measurement>
+			</measurements>
+		</Object>
+		<Object id="object2">
+			<measurements>
+				<measurement id="utilization"> 
+					<counters>
+						<counter> 
+							<name> c1</name>
+							<value>10</value>
+						</counter>
+						<counter> 
+							<name> c2</name>
+							<value>20</value>
+						</counter>		
+					</counters>
+				</measurement>
+				<measurement id="Basic"> 
+					<counters>
+						<counter> 
+							<name> c1</name>
+							<value>10</value>
+						</counter>
+						<counter> 
+							<name> c2</name>
+							<value>20</value>
+						</counter>		
+					</counters>
+				</measurement>
+			</measurements>
+		</Object>
+	</Objects>
+</device>
+</devices>

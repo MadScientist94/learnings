@@ -1,0 +1,95 @@
+package UncheckedEH;
+
+public class AllEH {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		AllEH eh= new AllEH();
+		//Array index out of bound
+		eh.arr();
+		//array index out of bound with out exception handling
+//		eh.arr1();
+		//String index out of bound
+		eh.str();
+		//Arithmetic exception
+		eh.arith();
+		//null point exception
+		eh.nullpoint();
+		// number format eception
+		eh.numformat();
+		
+
+	}
+	
+	void arith()
+	{
+	      try{
+	         int num1=30, num2=0;
+	         int output=num1/num2;
+	         System.out.println ("Result: "+output);
+	      }
+	      catch(ArithmeticException e){
+	         System.out.println ("You Shouldn't divide a number by zero");
+	      }
+	      
+	      
+	   }
+	void arr() {
+		try{
+	        int a[]=new int[10];
+	        //Array has only 10 elements
+	        a[11] = 9;
+	      }
+	      catch(ArrayIndexOutOfBoundsException e){
+	         System.out.println ("ArrayIndexOutOfBounds");
+	      }
+	}
+	
+	void arr1() {
+		
+	        int a[]=new int[10];
+	        //Array has only 10 elements
+	        a[11] = 9;
+	     
+	         System.out.println ("ArrayIndexOutOfBounds");
+	      
+	}
+	
+	
+	void numformat() {
+		try{
+			 int num=Integer.parseInt ("XYZ") ;
+			 System.out.println(num);
+		      }catch(NumberFormatException e){
+			  System.out.println("Number format exception occurred");
+		      }
+	}
+
+	void str() {
+		try{
+			 String str="beginnersbook";
+			 System.out.println(str.length());;
+			 char c = str.charAt(0);
+			 c = str.charAt(40);
+			 System.out.println(c);
+		      }catch(StringIndexOutOfBoundsException e){
+			  System.out.println("StringIndexOutOfBoundsException!!");
+		       }
+	}
+
+	void nullpoint() {
+		try{
+			String str=null;
+			//when we try to fetch null value of an object
+			System.out.println (str.length());
+		}
+	        catch(NullPointerException e){
+			System.out.println("NullPointerException..");
+		}
+
+	}
+
+
+
+
+}

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import com.jothi.jdbc.pojo.Book;
 import com.jothi.jdbc.utils.ConnectionUtils;
 import com.jothi.jdbc.utils.ServiceUtils;
 
@@ -63,6 +64,8 @@ public class App
     }
     
     void loginUser() {
+    	int loginTry=0;
+    	
     	System.out.println("enter user name ");
     	String name= sc.nextLine().toString().trim();
     	System.out.println("enter password");
@@ -71,7 +74,13 @@ public class App
 			boolean b=st.execute(String.format("SELECT * from USER_TABLE WHERE USERNAME='%s'AND PASSWORD= '%s'",name,pass));
 			System.out.println(b);
 			if(b) {
+				loginTry=0;
 				accessBook();
+			}
+			else {
+				loginTry++;
+				System.out.println("user name or passcode did not exist");
+				loginUser();
 			}
     	} catch (SQLException e) {
 			e.printStackTrace();
@@ -82,7 +91,68 @@ public class App
     void accessBook() {
     	System.out.println("press 1 to create book");
     	System.out.println("press 2 to delete book");
+    	System.out.println("press 3 to update book");
+    	System.out.println("press 4 for search options");
+    	int crudOptions= ServiceUtils.scanInt();
+    	
+    	switch(crudOptions) {
+    	case 1:{
+    		createBook();
+    		break;
+    	}
+    	case 2:{
+    		deleteBook();
+    		break;
+    	}
+    	case 3:{
+    		updateBook();
+    		break;
+    	}
+    	case 4:{
+    		searchBook();
+    		break;
+    	}
+    	default:{
+    		System.out.println("please provide the valid option[ 1 -or- 2 -or- 3 -or- 4");
+    		accessBook();
+    	}
+    	}
     }
+
+	private void searchBook() {
+		System.out.println("");
+	}
+
+	private void updateBook() {
+		
+	}
+
+	private void deleteBook() {
+		
+	}
+
+	private void createBook() {
+		
+		System.out.println("provide the following details to create book");
+		Book b = new Book();
+		System.out.println("book Id");
+		b.setBookid(ServiceUtils.scanInt());
+		System.out.println("book name");
+		sc.nextLine();
+		System.out.println("author");
+		sc.nextLine();
+		System.out.println("publication");
+		sc.nextLine();
+		System.out.println("cost");
+		ServiceUtils.scanDouble();
+		System.out.println("edition");
+		ServiceUtils.scanInt();
+		
+		
+		
+	}
+    
+    
 
 
 

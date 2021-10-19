@@ -1,12 +1,13 @@
 <devices>
 	<time>10/02/2021 05:30</time>
 	<device id="Device01">
+	<!-- Write your comment-->
 		<name>Dev1</name>
 		<time>10/02/2021 05:30</time>
-		<counters>
+		<counters id="1">
 			<counter>
-				<name>counter1</name>
-				<value>100</value>
+				<name></name>
+				<value>100.09</value>
 			</counter>
 			<counter>
 				<name>counter2</name>
@@ -21,7 +22,7 @@
 	<device id="Device02">
 		<name>Dev2</name>
 		<time>10/02/2021 05:30</time>
-		<counters>
+		<counters id="2">
 			<counter>
 				<name>counter1</name>
 				<value>100</value>

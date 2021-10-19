@@ -34,11 +34,12 @@ public class XpathExpressions {
 	          NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(
 			            doc, XPathConstants.NODESET);
 
-	          System.out.println(nodeList.item(0).getParentNode().getParentNode().getAttributes().item(0));
-	         System.out.println( nodeList.item(0).getOwnerDocument());
-	         NodeList nodeList1 = (NodeList) xPath.compile("../*").evaluate(
-	        		 nodeList.item(0).getOwnerDocument(), XPathConstants.NODESET);
-	         System.out.println(nodeList1.item(0).getChildNodes().item(0).getNamespaceURI());
+	          System.out.println(nodeList.item(0).getChildNodes().item(1).getChildNodes().getLength());
+	         
+//	         System.out.println( nodeList.item(0).getOwnerDocument().getElementsByTagName("devices").item(0).getNodeName());//getting device node liist
+//	         NodeList nodeList1 = (NodeList) xPath.compile("../*").evaluate(
+//	        		 nodeList.item(0).getOwnerDocument(), XPathConstants.NODESET);
+//	         System.out.println(nodeList1.item(0).getChildNodes().item(0).getNamespaceURI());
 	          
 	          //	          nodeList.
 //	          System.out.println(nodeList.item(0).getBaseURI());
@@ -58,7 +59,7 @@ public class XpathExpressions {
 //	          System.out.println(nodeList.item(0).getClass());
 //	          System.out.println(nodeList.item(0).getLastChild());
 	          
-	          System.out.println(nodeList.getLength());
+//	          System.out.println(nodeList.getLength());
 	          
 	       
 		}

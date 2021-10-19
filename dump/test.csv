@@ -1,0 +1,7 @@
+ne_datetime,counter_id,ne_id,object_id,counter_value,measurement_name,core_id,vendor_id,ne_type_id,created_on,counter_string,sub_ne_type,tag,ne_date,
+10-02-2021 05:30,counter1,Device01,,100,basic,,,,,,,,2021-02-10,
+10-02-2021 05:30,counter2,Device01,,101,basic,,,,,,,,2021-02-10,
+10-02-2021 05:30,counter3,Device01,,99,basic,,,,,,,,2021-02-10,
+10-02-2021 05:30,counter1,Device02,,100,basic,,,,,,,,2021-02-10,
+10-02-2021 05:30,counter2,Device02,,101,basic,,,,,,,,2021-02-10,
+10-02-2021 05:30,counter3,Device02,,99,basic,,,,,,,,2021-02-10,

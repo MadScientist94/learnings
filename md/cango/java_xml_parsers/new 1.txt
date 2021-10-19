@@ -1,0 +1,70 @@
+<current>
+   <city id="5004223" name="Oakland">
+      <coord lon="-83.3999" lat="42.6667" />
+      <country>US</country>
+      <timezone>-14400</timezone>
+      <sun rise="2021-03-24T11:29:19" set="2021-03-24T23:50:05" />
+   </city>
+   <temperature value="62.26" min="61" max="64.4" unit="fahrenheit" />
+   <feels_like value="54.63" unit="fahrenheit" />
+   <humidity value="59" unit="%" />
+   <pressure value="1007" unit="hPa" />
+   <wind>
+      <speed value="12.66" unit="mph" name="Moderate breeze" />
+      <gusts value="24.16" />
+      <direction value="200" code="SSW" name="South-southwest" />
+   </wind>
+   <clouds value="75" name="broken clouds" />
+   <visibility value="10000" />
+   <precipitation mode="no" />
+   <weather number="803" value="broken clouds" icon="04d" />
+   <lastupdate value="2021-03-24T16:15:35" />
+</current>
+
+
+[[inputs.http]]
+  ## OpenWeatherMap API, need to register for $API_KEY: https://openweathermap.org/api
+  urls = [
+    "http://api.openweathermap.org/data/2.5/weather?q=Oakland&appid=$API_KEY&mode=xml&units=imperial",
+"http://api.openweathermap.org/data/2.5/weather?q=New%20York&appid=$API_KEY&mode=xml&units=imperial",    "http://api.openweathermap.org/data/2.5/weather?q=London&appid=$API_KEY&mode=xml&units=imperial"
+    ]
+  data_format = "xml"
+  ## Drop url and hostname from list of tags
+  tagexclude = ["url", "host"]
+
+  ## Multiple parsing sections are allowed
+  [[inputs.http.xml]]
+    ## Optional: XPath-query to select a subset of nodes from the XML document.
+    metric_name = "'weather'"
+    ## Optional: XPath-query to set the metric (measurement) name.
+    metric_selection = "/current"
+    ## Optional: Query to extract metric timestamp.
+    ## If not specified the time of execution is used.
+    timestamp = "lastupdate/@value"
+    ## Optional: Format of the timestamp determined by the query above.
+    ## This can be any of "unix", "unix_ms", "unix_us", "unix_ns" or a valid Golang
+    ## time format. If not specified, a "unix" timestamp (in seconds) is expected.
+    timestamp_format = "2006-01-02T15:04:05"
+    
+    ## Tag definitions using the given XPath queries.
+    [inputs.http.xml.tags]
+      city = "city/@name"
+      country = "city/country"
+
+    ## Integer field definitions using XPath queries.
+    [inputs.http.xml.fields_int]
+      humidity = "humidity/@value"
+      clouds = "clouds/@value"
+
+    ## Non-integer field definitions using XPath queries.
+    ## The field type is defined using XPath expressions such as number(), boolean() or string(). If no conversion is performed the field will be of type string.
+    [inputs.http.xml.fields]
+      temperature = "number(/temperature/@value)"
+      precipitation = "number(precipitation/@value)"
+      wind_speed = "number(wind/speed/@value)"
+      wind_desc = "string(wind/speed/@name)"
+      clouds_desc = "string(clouds/@name)"
+      lat = "number(city/coord/@lat)"
+      lon = "number(city/coord/@lon)"
+      ## If "precipitation/@mode" value returns "no", is_it_raining will return false
+      is_it_raining = "precipitation/@mode = 'yes'"

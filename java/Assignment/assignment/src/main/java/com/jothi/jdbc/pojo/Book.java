@@ -9,7 +9,9 @@ public class Book {
 	private int edition;
 	
 	
-	
+	public Book() {
+		
+	}
 	public Book(int bookid, String bookname, String author, String publication, double cost, int edition) {
 		super();
 		this.bookid = bookid;

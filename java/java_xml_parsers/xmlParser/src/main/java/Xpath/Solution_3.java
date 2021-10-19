@@ -84,18 +84,21 @@ public class Solution_3 {
 		List<Map<String, String>> counters_list = new ArrayList<Map<String, String>>();
 		try {
 
-			File inputFile = new File("device_sample.xml");
+			File inputFile = new File("mondial.xml");
+//			File inputFile = new File("device_sample.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder(); // instance of dom builder
 			Document doc = dBuilder.parse(inputFile); // document object model created
 			XPath xPath = XPathFactory.newInstance().newXPath();
 			// base node from lookup
-			base_path_expression = "//device";
+			base_path_expression = "//country";
+//			base_path_expression = "//device";
 			NodeList node_list = (NodeList) xPath.compile(base_path_expression).evaluate(doc, XPathConstants.NODESET);
 			for (int i = 0; i < node_list.getLength(); i++) {
 				Node base_node = node_list.item(i);
 				Map base_node_map = new HashMap<String, Object>();
 				map_these_node(base_node, base_node_map);
+				normalised_map(base_node_map);
 				counters_list.add(base_node_map);
 			}
 		} catch (SAXException | IOException e) {
@@ -107,6 +110,14 @@ public class Solution_3 {
 		}
 		for (Map<String, String> counter_data : counters_list) {
 			System.out.println(counter_data);
+		}
+	}
+
+	private void normalised_map(Map base_node_map) {
+		for(String key: lookup_map.get("header").split(",")) {
+		if(base_node_map.containsKey(key)) {
+			
+		}
 		}
 	}
 

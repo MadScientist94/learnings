@@ -19,4 +19,19 @@ static Scanner sc= new Scanner(System.in);
 	
 	return res;
 }
+	
+	public static double scanDouble() {
+	Double res=0d;
+	try {
+		res=sc.nextDouble();
+	}
+	catch(Exception e) {
+		
+		sc=new Scanner(System.in);
+	System.out.println("please provide a valid integer value");
+	res= scanDouble();
+	}
+	
+	return res;
+}
 }
